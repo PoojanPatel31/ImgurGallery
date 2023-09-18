@@ -21,6 +21,7 @@ android {
 
         buildFeatures {
             buildConfig = true
+            viewBinding = true
         }
 
         buildConfigField("String", "BASE_URL", "\"https://api.imgur.com/\"")
@@ -72,6 +73,7 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.1")
 
     testImplementation("junit:junit:4.13.2")

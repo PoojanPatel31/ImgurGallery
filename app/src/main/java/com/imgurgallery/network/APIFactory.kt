@@ -16,7 +16,6 @@ object APIFactory {
         .baseUrl(BuildConfig.BASE_URL)
         .build()
         .create(RestAPI::class.java)
-        get() = field
 
 
     /**
