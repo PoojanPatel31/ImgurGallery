@@ -16,14 +16,18 @@ import com.imgurgallery.util.DateTimeUtil
 
 class GalleryAdapter : RecyclerView.Adapter<GalleryAdapter.RowViewHolder>() {
 
+    companion object{
+        const val gridSize = 3
+        const val listSize = 1
+    }
+
     private val galleryItems: MutableList<GalleryItem> = mutableListOf()
     private val glideReqOption = RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
 
-    @SuppressLint("NotifyDataSetChanged")
     fun loadImages(images: List<GalleryItem>) {
         galleryItems.clear()
         galleryItems.addAll(images)
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0, galleryItems.size)
     }
 
     override fun getItemCount(): Int {

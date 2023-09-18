@@ -14,22 +14,18 @@ import kotlinx.coroutines.withContext
 class GalleryViewModel(private val restAPI: RestAPI) : ViewModel() {
 
     val galleryList = MutableLiveData<List<GalleryItem>>()
-    val isLoading = MutableLiveData<Boolean>()
-
     private var job: Job? = null
 
     /**
      * Fetch Imgur images in background thread and show the images in main thread.
      */
     fun fetchGallery() {
-        isLoading.value = true
         job = CoroutineScope(Dispatchers.IO).launch {
             val response = restAPI.getGallery()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     galleryList.value = sortByDate(filterResponse(response.body()?.data))
                 }
-                isLoading.value = false
             }
         }
 
